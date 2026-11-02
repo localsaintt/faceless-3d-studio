@@ -1,0 +1,20 @@
+# Render output and large generated media (never commit; keep out of iCloud)
+output/
+renders/
+**/frames/
+*.mp4
+*.mov
+*.wav
+*.exr
+# Blender backups and caches
+*.blend1
+*.blend2
+blendcache_*/
+# Python
+__pycache__/
+*.pyc
+.venv/
+# Local models
+models/
+# macOS
+.DS_Store
