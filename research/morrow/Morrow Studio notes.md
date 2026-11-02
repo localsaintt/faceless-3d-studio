@@ -42,6 +42,19 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 - After posting: one video per account per day; reply to first comments; pin sources; read the top comment for the next premise.
 - 4.2 The daily loop: not yet seen.
 
+## Zombie survival (Z1.1) and How it's built (H1.1)
+- Skeletons and measured rules are summarised in our own words in `Studio Memory/Format skeletons.md`.
+- Zombie: in test at Morrow (no posted results); reference Part 1s by others 710K–4.4M (Oct 15–24 2026). Morrow does it in flat 2D.
+- How it's built: one Morrow short passed 245K in 2 days; references 4.3–14.4M (Oct 16–25 2026). Version 2 "autopilot" (H1.1b) not yet seen.
+
+## Weekly drop, Oct 27 2026 (public counts read Oct 26; other creators)
+- What-if: Earth stops spinning 28.8M; electrons disappear 5 s 17.3M. **Winning lane: one everyday thing changes for a few seconds, seen through your own eyes (POV, second person), with a number on screen.** New formats nobody asked for (shelters, zippers) got ~1/10 the views of the classic "X disappeared for 5 seconds".
+- Zombie: tidal island 1.9M; "Day 1 on the 10th floor" 1.7M. Ordinary place + an inside advantage only the narrator knows.
+- How it's built: backyard builds dominate (pool 12.8M, toilet 5.9M) and were copied by dozens of accounts within days; **remakes flop, new topics win.**
+- Long-form: 3D "What if you shrank and couldn't stop?" 858,960 YouTube views. Escalation film = one premise that keeps getting bigger.
+- Rule of the week: copy the skeleton, never sentences, sets, places or voice; TikTok stops paying Creator Rewards on copies.
+- Kit: What If 3D Kit v3 (needs login once per computer); zombie and how-it's-built kits coming.
+
 ## Costs (lesson 2.2) vs. ours
 | | Morrow | Us |
 |---|---|---|

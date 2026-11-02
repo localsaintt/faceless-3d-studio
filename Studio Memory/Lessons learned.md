@@ -29,6 +29,9 @@ Claude reads this before writing or building any video and adds to it after ever
 - Muffling the world during the "impossible" window (low-pass + quieter beds) sells the premise.
 
 ## Story and script
+- **Second person + POV** ("You're on South Beach when…", eye-height shots) is the winning what-if lane right now (Morrow weekly drop, Oct 27). Video 1 was third person, so it needs a rewrite.
+- Use the proven title phrasing **"What if X … for 5 seconds?"**. Formats nobody asked for drew ~1/10 the views.
+- Narration density 3.2–3.8 words/s with a caption about every second (Video 1 had 1.9 w/s: too sparse).
 - **Cut to a new picture every 2–3 s** (Morrow's first-week data: all winners did). Split long shots into extra camera angles on the same set; render time doesn't change. Video 1 averaged ~6 s per shot, too slow.
 - **Signature closing line, every episode, our own:** a recurring ice-cream-truck line (never anyone else's catchphrase, e.g. Morrow's "And yes. There's a tsunami.").
 - Strongest premises so far (Morrow data): an everyday thing changes for ~5 s, at a famous busy waterfront in daylight, 61 s+.
