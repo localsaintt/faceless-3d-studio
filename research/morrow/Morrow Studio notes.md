@@ -55,6 +55,29 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 - Rule of the week: copy the skeleton, never sentences, sets, places or voice; TikTok stops paying Creator Rewards on copies.
 - Kit: What If 3D Kit v3 (needs login once per computer); zombie and how-it's-built kits coming.
 
+## The What If prompt pack (kit PROMPTS file): what it reveals about their method
+(The owner shared the file; it is not stored here. Summary in our words.)
+- **Their engine** is a Python package ("whatif3d") inside the kit: a new-video command that starts from an example (tsunamis, electrons, water, friction), a contact-sheet tool, a CC0 sound library + Freesound fetch + synthesis, a QC script, an AAC peak fixer, and a **visual twin check** against posted videos (flag ≥5% match).
+- **Their what-if structure (61–62 s):** spoken + on-screen title 0–3.4 s → a countdown to the moment (~4.6 s) → the 5 impossible seconds **shown ~6× slower** (body → place → strangest detail → an orbit/aerial beat around 0:20 → back) → the return at ~0:36 → consequences with one big event the viewer watches → a 3-line twist → an end card (last 3.5 s: the question, one true fact, a follow line).
+- **Text-led, not voice-led:** only the title is spoken; the story is carried by 15–22 on-screen captions (one every 2–3 s, ≤10 words, present tense, second person, a real sourced number in ≥1/3 of them) and dense sound design.
+- **First-person camera** at a new famous place each video, bright afternoon, busy, landmark in frame; **every caption gets its own camera beat; never hold a framing more than 4 s.** World clock: real time → 6× slow → real time (60× fast-forward allowed for "minutes later").
+- **Facts first:** 20 true, specific, visual facts with numbers and sources before writing; 3 true twist endings; every on-screen number sourced in sources.txt.
+- **Preview loop:** stills at every caption time → per-still review (is the caption true on this frame, is the action readable, is anything blocking it, too white or dark?) → fix → re-render only those stills.
+- **Sound layer map:** place ambience + speeding clock tick + riser in the countdown; at the moment a sub-bass drop, a "braam", near-silence and a ringing tone; a subject bed in the slow section + one sound per picture; whooshes in and out of the orbit; a reversed whoosh into the return; crowds/sirens/the main event after; drone + clock + hit under the twist; thump/pop/tap/chime on the end card. −14 LUFS, true peak < −1 dBTP, loudness checked per second for holes.
+- **Side-by-side review** against a viral video in the niche (scores for hook, visuals, sound identity, pacing, ending, virality; the swipe second; ≤6 timestamped fixes).
+- **Caption template** for the TikTok post (question, emoji, place line, ending tease, comment question, 8–10 hashtags, under 300 characters, no claims the video doesn't show).
+- **Their template phrases (their brand; never reuse verbatim):** the follow line on the end card, the "shown 6× slower" label wording, their comment-question line, their tsunami closer.
+
+### What we adopt (in our own wording and look)
+1. Structure: countdown → slowed impossible seconds (time-dilated world clock) → return → consequence → twist → end card.
+2. Text-led storytelling with a spoken title; narration becomes optional per video.
+3. First-person camera as the main view, with a new camera beat per caption (≤4 s per framing).
+4. Facts-first research step + sources.txt for every video.
+5. Their sound layer map, implemented with our own synthesised sounds.
+6. A visual twin check (perceptual frame hashes) against all our previous videos.
+7. A side-by-side comparison tool (cut rate, caption rate, loudness curve, contact sheets) against a reference video the owner supplies.
+8. Generated caption.txt following the caption formula, in our words.
+
 ## Costs (lesson 2.2) vs. ours
 | | Morrow | Us |
 |---|---|---|
