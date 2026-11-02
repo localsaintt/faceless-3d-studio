@@ -5,8 +5,10 @@ The running record of what has been learned, tested and decided. Update it at th
 _Last updated: 2026-11-02 (after first Mac run)_
 
 ## Current status
-- **Stage B (foundation):** built and tested in the cloud container. Waiting for the first run on the owner's Mac (`docs/MAC_SETUP.md` → `bash setup/mac_setup.sh`, which ends with the doctor speed test).
-- **Stage C (prototype):** beach kit + house characters + camera move render correctly (EEVEE). A 6 s preview clip has been produced; real speed/memory numbers must come from the Mac.
+- **Stage B (foundation):** done. Mac setup + doctor ran ALL GOOD on the owner's MacBook Air M2.
+- **Stage C (prototype + benchmark):** done. 1.15 s/frame at 1080×1920 on the Mac (~32 min per 70 s video).
+- **Stage D (first complete video):** pipeline built and the full video produced end to end in the cloud at draft quality. "What if sound moved slower than you can run?" is 70.0 s, 12 shots, with narration, original SFX, captions, counters and labels; **QC: all 11 checks PASS**. The video note is at `status: script-review`, waiting for the owner. Next: owner reviews the draft/script → `script-approved` → final render on the Mac.
+- **Obsidian:** vault configured (Start here, Dashboard, video notes with approval status, idea bank, Studio Memory).
 - **Nothing bought, signed up for, or published.** Only free, open-source tools are used.
 
 ## Decisions made
@@ -51,6 +53,7 @@ Conclusions: the M2 renders this style ~40× faster than the cloud container's s
 ## What has been tested
 | Date | Test | Result |
 |---|---|---|
+| 2026-11-02 | Full video pipeline (draft profile, cloud) | Draft 1: QC PASS except true peak (+1.8 dBTP). The visual review found the camera-clearing bug (ground hidden in s02/s11/s12), pink-fog ring density, over-blurred close shots and loud sweeps. All fixed. Draft 2: **all 11 QC checks PASS** (−14.3 LUFS, −1.4 dBTP, 70.0 s, 1080×1920). ~48 min per full draft in the cloud |
 | 2026-11-02 | `bpy==5.2.3` wheels | Exist for macOS arm64 (Python 3.13), Linux, Windows |
 | 2026-11-02 | EEVEE headless in the cloud container (no GPU) | Works only after installing Mesa EGL (software GL). Cycles CPU works out of the box |
 | 2026-11-02 | Prototype shot s01 (beach, 160 people, 14 palms, 16 umbrellas, 9 hotels, tower, 2 walkers, dolly push), preview 540×960 | Renders correctly. Container (4 vCPU, software GL): ~9 s/frame, peak ~4.3–4.9 GB RAM over the animation (~1.8 GB for a single still). **Not representative of the M2. Check peak memory on the Mac first** |
