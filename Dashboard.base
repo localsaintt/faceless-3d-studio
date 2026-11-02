@@ -1,0 +1,26 @@
+views:
+  - type: table
+    name: Videos
+    filters:
+      and:
+        - file.inFolder("videos")
+        - file.ext == "md"
+    order:
+      - file.name
+      - status
+      - format
+      - length_s
+      - updated
+  - type: table
+    name: Ideas
+    filters:
+      and:
+        - file.inFolder("ideas")
+        - file.ext == "md"
+    order:
+      - file.name
+      - status
+      - format
+      - score
+      - difficulty
+      - premise

@@ -62,6 +62,19 @@ def main():
             check(tool, "OK", ver[:60])
         else:
             check(tool, "FAIL", "not found (macOS: brew install ffmpeg)")
+    if shutil.which("ffmpeg"):
+        filt = subprocess.run(["ffmpeg", "-hide_banner", "-filters"], capture_output=True, text=True).stdout
+        check("ffmpeg captions (libass)", "OK" if " ass " in filt else "FAIL",
+              "available" if " ass " in filt else "ffmpeg lacks libass: brew reinstall ffmpeg")
+    for mod, why in (("kokoro_onnx", "narration"), ("soundfile", "audio files")):
+        try:
+            __import__(mod)
+            check(mod, "OK", f"installed ({why})")
+        except ImportError:
+            check(mod, "FAIL", f"missing ({why}): re-run bash setup/mac_setup.sh")
+    model = ROOT / "models" / "kokoro" / "kokoro-v1.0.onnx"
+    check("narration voice model", "OK" if model.exists() else "FAIL",
+          "present" if model.exists() else "missing: re-run bash setup/mac_setup.sh")
     ram = ram_gb()
     check("memory", "OK" if ram and ram >= 15 else "WARN" if ram else "INFO",
           f"{ram:.0f} GB" + (" - fine with the lightweight render profiles" if ram and ram < 15 else "") if ram else "unknown")

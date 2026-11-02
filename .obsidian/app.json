@@ -1,0 +1,18 @@
+{
+  "userIgnoreFilters": [
+    "blender/",
+    "studio/",
+    "setup/",
+    "shots/",
+    "output/",
+    "logs/",
+    "models/",
+    "assets/fonts/",
+    ".venv/"
+  ],
+  "showUnsupportedFiles": false,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "ideas",
+  "attachmentFolderPath": "./media",
+  "alwaysUpdateLinks": true
+}

@@ -3,6 +3,7 @@
 An automated studio that turns one idea into an original, finished vertical 3D animated video (Blender + Python + FFmpeg), always delivered for the owner's approval.
 
 ## Read first, every session
+- **`Studio Memory/`** (Obsidian): `Lessons learned.md`, `Shot recipes.md`, `Owner preferences.md`, `Performance log.md`. **Read all four before writing or building any video. After every video, add what you learned.** Also read the owner's "Your notes" sections in `videos/*/` notes.
 - `docs/PROJECT_KNOWLEDGE.md`: status, decisions, hardware limits, open questions. **Update it before ending a session.**
 - `research/RESEARCH_REPORT.md`: research, recommended architecture, style and roadmap.
 
@@ -13,9 +14,14 @@ An automated studio that turns one idea into an original, finished vertical 3D a
 - Test everything before claiming it works. A script or storyboard is not a video.
 
 ## Machine constraints (owner's Mac)
-- Apple M2, **8 GB unified memory**, macOS Tahoe 26.6.2, ~100 GB free.
+- MacBook Air (fanless), Apple M2, **8 GB unified memory**, macOS Tahoe 26.6.2, **~29 GB free**. Measured: ~1.15 s per final 1080×1920 frame (~32 min per 70 s video), ~0.5 GB render memory.
 - EEVEE only (no Cycles for production). 1K textures, instanced crowds, render per shot, previews at 540×960 before final renders, 24 fps, per-shot render-time budget.
 - Keep the project and all render output **outside iCloud-synced folders**; render frames and outputs are git-ignored.
+
+## Obsidian = the owner's control room
+- The repo root is an Obsidian vault (`.obsidian/app.json` hides code folders). Notes: `Start here.md`, `Dashboard.base`, `videos/<id>/<id>.md`, `ideas/`, `templates/`.
+- **The video note's `status` is the approval gate**: `script-review` → (owner) `script-approved` → `rendering` → `ready-for-review` → (owner) `approved` → `archived` → (owner) `posted`. Never set the owner's steps yourself.
+- The block between `STUDIO:BEGIN/END` markers is regenerated from `video.yaml` by `studio/notes.py`; never edit outside it ("Your notes" belongs to the owner).
 
 ## Code layout and how to run
 - `blender/build_shot.py`: builds one shot from a YAML spec and renders it (runs in a process with `bpy`).
@@ -27,8 +33,14 @@ An automated studio that turns one idea into an original, finished vertical 3D a
   - `camera.py`: camera-move library.
   - `render.py`: render profiles.
 - `studio/render_shot.py`: runner (render → MP4 → contact sheet). `studio/doctor.py`: environment check + speed test.
-- `shots/<video>/<shot>.yaml`: shot specs (the contract between storyboard and Blender).
-- Run: `.venv/bin/python -m studio.render_shot <spec> --profile preview|final|final_720 [--still N ...] [--fresh]`.
+- `videos/<id>/video.yaml`: the whole video (sets, shots, narration, actors, effects, camera, HUD, sfx). It is the single source of truth.
+- `studio/make_video.py`: the full pipeline (audio → shots → join → overlays → loudnorm mux → QC → note). `studio/archive.py`: approved → iCloud.
+- `studio/audio/`: `synth.py` (procedural SFX, all original), `tts.py` (Kokoro, cached), `mix.py` (beds, slow-window muffle, ducking).
+- `studio/overlays.py`: ASS captions/HUD/callouts (fonts in `assets/fonts`, OFL). `studio/qc.py`: checks. `studio/notes.py`: Obsidian sync.
+- `blender/scenekit/`: also `street.py`, `vehicles.py`, `actors.py` (scripted people/cars), `effects.py` (rings, ripples, Mach cones, booms, flips, crowd jumps).
+- `shots/proto/*.yaml`: single-shot prototype specs (benchmark/doctor).
+- Run a video: `.venv/bin/python -m studio.make_video <id> --profile draft|preview|final|final_720 [--shots s03 ...] [--fresh]`.
+- Check one shot: `.venv/bin/python blender/build_shot.py --video videos/<id>/video.yaml --shot s03 --profile preview --out <dir> --still 60 120`.
 - Always look at stills/contact sheets before a full render.
 
 ## Blender notes

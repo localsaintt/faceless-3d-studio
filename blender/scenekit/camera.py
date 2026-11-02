@@ -14,7 +14,7 @@ def _key(obj, path, frames_values):
         obj.keyframe_insert(path, frame=f)
 
 
-def build(spec, scene, coll, f_start, f_end):
+def build(spec, scene, coll, f_start, f_end, actors=None):
     data = bpy.data.cameras.new("Cam")
     data.lens = spec.get("lens", 32)
     data.sensor_fit = "VERTICAL"
@@ -26,9 +26,21 @@ def build(spec, scene, coll, f_start, f_end):
     scene.camera = cam
 
     move = spec.get("move", "dolly_push")
-    a, b = spec["from"], spec.get("to", spec["from"])
-    ta, tb = spec["target_from"], spec.get("target_to", spec["target_from"])
-    if move in ("dolly_push", "crane_up", "track", "static", "pull_back"):
+    a = spec.get("from")
+    b = spec.get("to", a)
+    if move == "pan_follow":
+        # camera stays put (or drifts), the look-at target rides along with an actor
+        _key(cam, "location", [(f_start, a), (f_end, b)])
+        follow = actors[spec["follow"]]["obj"]
+        tgt.parent = follow
+        tgt.location = (0, 0, spec.get("follow_height", 1.0))
+        move = None
+    elif move != "orbit":
+        ta = spec["target_from"]
+        tb = spec.get("target_to", ta)
+    if move is None:
+        pass
+    elif move in ("dolly_push", "crane_up", "track", "static", "pull_back"):
         _key(cam, "location", [(f_start, a), (f_end, b)])
         _key(tgt, "location", [(f_start, ta), (f_end, tb)])
     elif move == "orbit":

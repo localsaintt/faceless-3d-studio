@@ -35,6 +35,23 @@ The last lines should say `ALL GOOD`. The speed test prints how long a frame too
 open output/proto/s01_beach_establishing/s01_beach_establishing_preview.mp4
 ```
 
+## Obsidian (your control room)
+1. Download Obsidian from **https://obsidian.md** (free) and open it.
+2. Choose **Open folder as vault** and pick `~/Projects/faceless-3d-studio`.
+3. If it asks about trusting the vault, choose **Trust author and enable plugins** (only Obsidian's built-in features are used).
+4. Open **Start here** in the left sidebar. It explains the dashboard, the video notes, and how approval works.
+
+## Make the first video
+```bash
+cd ~/Projects/faceless-3d-studio && git pull && bash setup/mac_setup.sh   # once, picks up new tools
+.venv/bin/python -m studio.make_video slow-sound-miami                  # preview (~10-15 min)
+```
+Read the script in Obsidian (`videos/slow-sound-miami`). When you're happy, change `status` to `script-approved`, then:
+```bash
+.venv/bin/python -m studio.make_video slow-sound-miami --profile final  # ~35-60 min, Mac plugged in
+```
+The finished video opens automatically and appears in the note with its quality report.
+
 ## Let Claude drive it
 Run Claude Code in this folder: open the Claude Desktop app's Claude Code tab and choose this folder, or type `claude` in Terminal here. To let a cloud session use this Mac, run `claude remote-control` in this folder. Claude asks before running commands.
 

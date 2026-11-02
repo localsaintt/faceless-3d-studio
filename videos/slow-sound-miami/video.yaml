@@ -1,0 +1,227 @@
+# Video spec: the single source of truth for this video.
+# The Obsidian note (slow-sound-miami.md) is generated from it, and the studio builds the video from it.
+id: slow-sound-miami
+title: "What if sound moved slower than you can run?"
+format: what-if
+location: "South Beach, Miami (generic recreation: no real businesses or logos)"
+audience: US
+voice: am_michael          # Kokoro voice (local, Apache-2.0)
+voice_speed: 1.0
+fps: 24
+
+premise: >
+  For ten seconds at noon, the speed of sound on Miami Beach drops from 767 mph to 7 mph,
+  slower than a jog. Speech arrives seconds late, and anything faster than 7 mph breaks the sound
+  barrier. When it snaps back, every sound still in the air arrives at once.
+science: >
+  Speed of sound in air is ~767 mph (343 m/s). At 7 mph (3.13 m/s), a 60 ft (18.3 m) gap takes
+  ~5.8 s. An object faster than the local speed of sound drags a Mach cone (sin θ = 1/M) and a
+  sonic boom sweeps over observers as the cone passes. The premise itself is impossible and is
+  presented as a hypothetical, not real science.
+running_gag: "The ice-cream truck song never arrives on time (this episode: it never arrives at all)."
+comment_prompt: "Would you outrun your own scream?"
+
+sets:
+  beach:
+    kit: beach
+    seed: 5120
+    crowd: 180
+    palms: 14
+    umbrellas: 16
+    buildings: 9
+    tower: {loc: [4, -4, 0], rot_deg: 200}
+    clear: [[-6, -2.5, 2.5], [-6, -6, 2.2], [-6, -9.5, 2.2], [-6, -13, 2.2], [-6, -16.5, 2.2], [-6, -20.3, 2.6]]   # kid-to-mom lane stays empty (x, y, radius)
+    sun: {strength: 3.4, elevation_tilt: 40, azimuth: 150}
+  street:
+    kit: street
+    seed: 77
+    buildings: 9
+    palms: 12
+    cafes: 8
+    sun: {strength: 3.4, elevation_tilt: 40, azimuth: 150}
+
+shots:
+  - id: s01
+    set: beach
+    duration: 4.5
+    vo: "What if sound moved slower than you can run?"
+    actors:
+      - {type: person, id: guard, anim: look_up, pos: [4.2, -4.6, 2.12], face_deg: 200}
+    effects:
+      - {type: ring, at: 0.8, origin: [4.0, -5.4, 3.3], speed: 343, max_r: 60}   # normal-speed whistle: gone in a blink
+    camera: {move: dolly_push, from: [-16, 16, 10], to: [-12.5, 12.5, 8.6], target_from: [3, -5, 2.0], target_to: [4, -5, 2.6], lens: 30, fstop: 0.04}
+    hud:
+      - {label: "SPEED OF SOUND", value: 767, unit: "mph"}
+      - {kind: location, text: "SOUTH BEACH, MIAMI · 11:59 AM"}
+    sfx:
+      - {id: whistle, at: 0.8}
+
+  - id: s02
+    set: beach
+    duration: 4.5
+    vo: "At noon, it drops to seven miles an hour."
+    effects:
+      - {type: ring_field, at: 1.6, count: 26, area: [[-30, 30], [-20, 0]], speed: 3.13, max_r: 9, spread: 2.5}
+    camera: {move: crane_up, from: [-2, -20, 26], to: [-2, -22, 40], target_from: [0, -7, 0], target_to: [0, -7, 0], lens: 30, fstop: 0.06}
+    hud:
+      - {label: "SPEED OF SOUND", from: 767, to: 7, unit: "mph", at: 0.6, dur: 1.6}
+      - {kind: clock, from: "11:59:58", to: "12:00:02"}
+    sfx:
+      - {id: drop_sweep, at: 0.6}
+
+  - id: s03
+    set: beach
+    duration: 7.0
+    vo: "A kid yells for his mom, sixty feet away. She hears it six seconds later."
+    actors:
+      - {type: person, id: kid, anim: talk, pos: [-6, -2, 0], face_deg: 0, scale: 0.72, label: KID}
+      - {type: person, id: mom, anim: idle, pos: [-6, -20.3, 0], face_deg: 0, turn: {at: 6.4, to_deg: 180, dur: 0.5}, label: MOM}
+    effects:
+      - {type: ring, at: 0.5, origin: [-6, -2.25, 1.0], speed: 3.13, max_r: 22, ground: 0.0}
+    camera: {move: dolly_push, from: [-15, -30, 6.5], to: [-14, -28.5, 6.0], target_from: [-6, -11, 0.6], target_to: [-6, -12, 0.6], lens: 30, fstop: 0.09}
+    hud:
+      - {label: "SPEED OF SOUND", value: 7, unit: "mph"}
+      - {kind: tag, text: "DELAY 5.8 s", at: 1.0, dur: 5.0}
+    sfx:
+      - {id: kid_yell, at: 6.35}
+
+  - id: s04
+    set: street
+    duration: 6.0
+    vo: "Anything faster than seven miles an hour now breaks the sound barrier."
+    actors:
+      - {type: car, id: car1, lane: 2.0, start_x: -45, speed_mph: 25, color: 0.05}
+    effects:
+      - {type: cone, attach: car1}
+      - {type: boom, at: 4.9, pos: [8, 0, 1.5], strength: 1.0}
+      - {type: flip_umbrellas, at: 4.9, radius: 16, center: [9, -6]}
+    camera: {move: pan_follow, from: [9, -3.4, 2.6], to: [9, -3.6, 2.4], follow: car1, lens: 30, fstop: 0.25}
+    hud:
+      - {label: "SPEED OF SOUND", value: 7, unit: "mph"}
+      - {label: "SONIC BOOMS", from: 0, to: 1, at: 4.9, dur: 0.1}
+    sfx:
+      - {id: boom, at: 4.9}
+
+  - id: s05
+    set: street
+    duration: 6.0
+    vo: "Every car on the street. And every jogger going a little too fast."
+    actors:
+      - {type: car, id: c1, lane: 2.0, start_x: -70, speed_mph: 30, color: 0.25}
+      - {type: car, id: c2, lane: 2.0, start_x: -25, speed_mph: 22, color: 0.55}
+      - {type: car, id: c3, lane: -2.0, start_x: 60, speed_mph: -28, color: 0.75}
+      - {type: car, id: c4, lane: -2.0, start_x: 20, speed_mph: -20, color: 0.92}
+      - {type: person, id: jogger, anim: walk, pos: [-30, 5.5, 0], speed_mph: 8, dir_deg: 0}
+    effects:
+      - {type: cone, attach: c1}
+      - {type: cone, attach: c2}
+      - {type: cone, attach: c3}
+      - {type: cone, attach: c4}
+      - {type: cone, attach: jogger, length: 3.0}
+      - {type: boom, at: 1.2, pos: [-12, 0, 1.5], strength: 0.5}
+      - {type: boom, at: 2.6, pos: [-4, 0, 1.5], strength: 0.5}
+      - {type: boom, at: 4.1, pos: [6, 0, 1.5], strength: 0.5}
+    camera: {move: crane_up, from: [-34, 16, 9], to: [-30, 15, 13], target_from: [-6, 0, 0], target_to: [-2, 0, 0], lens: 30, fstop: 0.05}
+    hud:
+      - {label: "SPEED OF SOUND", value: 7, unit: "mph"}
+      - {label: "SONIC BOOMS", from: 1, to: 240, at: 0.3, dur: 5.5}
+    sfx:
+      - {id: boom_small, at: 1.2}
+      - {id: boom_small, at: 2.6}
+      - {id: boom_small, at: 4.1}
+      - {id: pop, at: 4.9}
+
+  - id: s06
+    set: beach
+    duration: 6.5
+    vo: "Meanwhile, four thousand people are talking, and nobody hears anyone on time."
+    effects:
+      - {type: ring_field, at: 0.0, count: 20, area: [[-25, 25], [-20, 0]], speed: 3.13, max_r: 7, spread: 5.0}
+    camera: {move: crane_up, from: [-15, 7, 2.4], to: [-12, 6, 13], target_from: [-3, -10, 1.2], target_to: [-1, -10, 0.5], lens: 30, fstop: 0.06}
+    hud:
+      - {label: "SPEED OF SOUND", value: 7, unit: "mph"}
+      - {label: "TALKING, BUT LATE", value: 4200, unit: "people"}
+    sfx:
+      - {id: murmur, at: 0.0}
+
+  - id: s07
+    set: street
+    duration: 7.0
+    vo: "The ice cream truck plays its song, then drives straight through it."
+    actors:
+      - {type: truck, id: truck, lane: 2.0, start_x: -4, speed_mph: 0, go: {at: 2.8, speed_mph: 12}}
+    effects:
+      - {type: ring, at: 0.4, origin: [-4, 2, 3.2], speed: 3.13, max_r: 14, ground: 0.0}
+      - {type: cone, attach: truck, from: 4.0}
+      - {type: boom, at: 5.0, pos: [6, 0, 2], strength: 0.6}
+    camera: {move: pan_follow, from: [-14, -8, 2.6], follow: truck, lens: 30, fstop: 0.05}
+    hud:
+      - {label: "SPEED OF SOUND", value: 7, unit: "mph"}
+      - {label: "SONIC BOOMS", from: 240, to: 241, at: 5.0, dur: 0.1}
+    sfx:
+      - {id: engine, at: 2.8}
+      - {id: boom, at: 5.0}
+
+  - id: s08
+    set: beach
+    duration: 4.5
+    vo: "Ten seconds later, sound snaps back to normal."
+    effects:
+      - {type: ring_field, at: -3.0, count: 22, area: [[-30, 30], [-20, 0]], speed: 3.13, max_r: 8, spread: 3.0}
+    camera: {move: static, from: [-6, 8, 18], target_from: [0, -10, 0], lens: 30, fstop: 0.06}
+    hud:
+      - {label: "SPEED OF SOUND", from: 7, to: 767, at: 2.2, dur: 0.25}
+      - {kind: clock, from: "12:00:08", to: "12:00:10", stop_at: 2.2}
+    sfx:
+      - {id: riser, at: 0.0}
+
+  - id: s09
+    set: beach
+    duration: 5.0
+    vo: "And everything still in the air arrives at once."
+    effects:
+      - {type: ring_field, at: -6.0, count: 22, area: [[-30, 30], [-20, 0]], speed: 3.13, max_r: 8, spread: 3.0, collapse_at: 1.2}
+      - {type: boom, at: 1.4, pos: [0, -10, 2], strength: 2.0}
+      - {type: flip_umbrellas, at: 1.4, radius: 60, center: [0, -10]}
+      - {type: crowd_jump, at: 1.4}
+    camera: {move: dolly_push, from: [-14, 13, 7.5], to: [-9, 8, 5.2], target_from: [0, -9, 1], target_to: [0, -9, 1.2], lens: 30, fstop: 0.05}
+    hud:
+      - {label: "SPEED OF SOUND", value: 767, unit: "mph"}
+      - {label: "SOUNDS ARRIVING AT ONCE", from: 0, to: 1800000, at: 1.2, dur: 0.6, note: "est."}
+    sfx:
+      - {id: big_boom, at: 1.4}
+
+  - id: s10
+    set: beach
+    duration: 6.0
+    vo: "For a split second, it's the loudest moment in Miami's history."
+    sun: {strength: 3.0, elevation_tilt: 62, azimuth: 120}
+    camera: {move: orbit, center: [4, -4, 0], radius: 13, height: 3.5, start_deg: 215, end_deg: 265, look_height: 2.6, lens: 32, fstop: 0.05}
+    hud: []
+    sfx:
+      - {id: ringing, at: 0.0}
+
+  - id: s11
+    set: beach
+    duration: 5.0
+    vo: "The kid walks up and asks: Mom, did you hear that?"
+    actors:
+      - {type: person, id: kid, anim: walk, pos: [-6, -12, 0], speed_mph: 2.5, dir_deg: -90, scale: 0.72}
+      - {type: person, id: mom, anim: idle, pos: [-6, -20.3, 0], face_deg: 180}
+    camera: {move: dolly_push, from: [-1.5, -26, 1.7], to: [-2.5, -25, 1.6], target_from: [-6, -18, 1.0], target_to: [-6, -18.5, 1.0], lens: 36, fstop: 0.7}
+    hud: []
+    sfx: []
+
+  - id: s12
+    set: street
+    duration: 8.0
+    vo: "Every sound came back. Except the ice cream truck song. Nobody knows where that went."
+    sun: {strength: 2.8, elevation_tilt: 64, azimuth: 115}
+    actors:
+      - {type: person, id: k1, anim: idle, pos: [-1.5, -6.2, 0], face_deg: 160, scale: 0.72, turn: {at: 4.2, to_deg: 95, dur: 0.6}}
+      - {type: person, id: k2, anim: idle, pos: [0, -6.6, 0], face_deg: 185, scale: 0.75, turn: {at: 4.5, to_deg: 265, dur: 0.6}}
+      - {type: person, id: k3, anim: idle, pos: [1.4, -6.1, 0], face_deg: 200, scale: 0.7, turn: {at: 4.8, to_deg: 120, dur: 0.6}}
+    camera: {move: dolly_push, from: [-1.5, 2.5, 1.7], to: [-1.0, 0.8, 1.5], target_from: [0, -6.3, 0.9], target_to: [0, -6.3, 0.9], lens: 32, fstop: 0.7}
+    hud:
+      - {kind: prompt, text: "Would you outrun your own scream?", at: 4.5}
+    sfx: []
