@@ -88,6 +88,13 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 | Story reel / talking-animal / motion-control reel | $0.55 / $0.64–2.08 / ~$0.90 (paid AI images and clips) | not in scope (would need a paid AI video account and the owner's approval) |
 | Presenter video | 2.5–5.6¢ per on-camera second | not applicable |
 
+**Cost sheet PDF (edition 2026-10-26)** adds:
+- The 3D short render (3,108 frames in **12.6 min**) ran on a **16 GB Apple M5 laptop**. The speed gap vs our M2 8 GB (1.15 s/frame) is mostly hardware. 3D shorts are built "by a helper agent" once the format is locked.
+- 3D film: 8 shots in ~25 min render + ~23 min composite; 1–3% (reused sets) to ~7% (new research + a test) of a Max 20x week.
+- **Claude plan arithmetic (theirs, not measured):** 1% of a Max 20x week ≈ 4% of a Max 5x week ≈ up to ~20% of a Pro week. A measured Pro column was due Nov 2 (lesson 2.6). Retries dominate: their worst film used ~40% of a Max 20x week; lesson 2.4 lists six habits that keep a video near 1–3%.
+- Other formats: motion-control reel ~$0.90 (Kling 2.6 Motion Control via SnapGen credits); talking-animal reel uses 5+ paid services; AI presenter rate cards $8.60–16 for 10 min; a motion-graphics explainer format is pending (lesson 6.7).
+- Their numbers exclude retries, the creator's time, failed paid calls and the Claude plan itself.
+
 They label numbers "measured" (own ledgers) vs "rate card" (provider list price), date every line, and re-measure within a week of price changes. **We should do the same: a receipt per video.**
 
 ## Ideas to adopt / test
