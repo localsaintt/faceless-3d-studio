@@ -73,21 +73,23 @@ def main():
           f"{ROOT} " + ("may be synced to iCloud - move it to ~/Projects" if synced else "is outside iCloud-synced folders"))
 
     if not a.quick and not any(r["status"] == "FAIL" for r in results):
-        print("\nSpeed test: building the prototype beach shot and rendering one preview frame...")
+        print("\nSpeed test: rendering 3 frames of the prototype beach at FINAL quality (1080x1920)...")
         from studio.render_shot import run_blender
         out = ROOT / "output" / "doctor"
         shutil.rmtree(out, ignore_errors=True)
         out.mkdir(parents=True)
         t = time.time()
-        rep = run_blender(PROTO, "preview", out, stills=[1])
-        spf = rep["s_per_frame"]
-        # rough scaling to a final frame: 4x pixels, 3x samples; EEVEE scales sub-linearly, so use x6
-        final_spf = spf * 6
-        est_h = final_spf * 70 * 24 / 3600
-        check("speed test", "OK", f"preview frame {spf:.1f}s, peak memory {rep['peak_mem_mb']} MB, "
+        # frame 1 pays one-time shader compilation; frames 2-3 show the real per-frame speed
+        rep = run_blender(PROTO, "final", out, stills=[1, 2, 3])
+        spf = rep["steady_s_per_frame"]
+        frames_70s = 70 * 24
+        check("speed test", "OK", f"first frame {rep['first_frame_s']:.1f}s (includes shader compile), "
+                                  f"then {spf:.1f}s per final frame; peak memory {rep['peak_mem_mb']} MB; "
                                   f"wall {time.time() - t:.0f}s")
-        check("estimate", "INFO", f"~{final_spf:.0f}s per final 1080x1920 frame -> ~{est_h:.1f} h for a 70 s video "
-                                  f"(rough; replaced by real measurements in Stage C)")
+        check("estimate", "INFO", f"70 s video = {frames_70s} frames -> ~{spf * frames_70s / 3600:.1f} h at final "
+                                  f"1080x1920, ~{spf * 0.5 * frames_70s / 3600:.1f} h if 720p-upscaled looks good "
+                                  f"(cool Mac; a fanless Mac slows down on long runs)")
+        shutil.rmtree(out, ignore_errors=True)
 
     log = ROOT / "logs" / f"doctor_{time.strftime('%Y%m%d_%H%M%S')}.json"
     log.parent.mkdir(exist_ok=True)

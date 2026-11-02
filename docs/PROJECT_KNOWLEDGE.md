@@ -2,7 +2,7 @@
 
 The running record of what has been learned, tested and decided. Update it at the end of every working session.
 
-_Last updated: 2026-11-02_
+_Last updated: 2026-11-02 (after first Mac run)_
 
 ## Current status
 - **Stage B (foundation):** built and tested in the cloud container. Waiting for the first run on the owner's Mac (`docs/MAC_SETUP.md` → `bash setup/mac_setup.sh`, which ends with the doctor speed test).
@@ -22,14 +22,14 @@ _Last updated: 2026-11-02_
 ## Hardware profile (owner's machine)
 | Item | Value | Implication |
 |---|---|---|
-| Computer | Apple M2, **8 GB unified memory** | EEVEE via Metal works. Memory is the main constraint: 1K textures, instanced crowds, render per shot, close other apps while rendering |
+| Computer | **MacBook Air** (fanless), Apple M2, **8 GB unified memory** | EEVEE via Metal works (doctor 2026-11-02). Fanless means it throttles on long renders. Memory is the main constraint: 1K textures, instanced crowds, render per shot, close other apps while rendering |
 | OS | macOS Tahoe 26.6.2 | Supported by current Blender |
-| Free disk | ~100 GB | Enough (budget ~20–30 GB for tools, models and assets, plus 4–8 GB of temporary frames per video, deleted after assembly) |
+| Free disk | **29 GB** measured by doctor after setup (owner estimated ~100 GB) | Tight. Final-render PNG frames are deleted automatically after the MP4 is assembled (`--keep-frames` to keep them). Free space before long production runs |
 | iCloud | 200 GB paid plan (2.99/mo) | **Do not put the project inside iCloud-synced folders** (Desktop/Documents if "Desktop & Documents Folders" sync is on). Render frames would upload gigabytes to iCloud and fill the plan. Use `~/Projects/faceless-3d-studio`. Rendered frames and outputs are git-ignored |
 | Not possible locally | Cycles at volume, TRELLIS.2 / local AI 3D generation (needs NVIDIA 16 GB+) | Use CC0 asset libraries; a paid generator or cloud GPU only if a real gap appears, with the owner's approval |
 | Thermal | macOS throttles when hot, which costs speed but does no damage | Render overnight, hard surface/stand, plugged in; Low Power Mode is optional for cooler overnight runs |
 
-Render-time estimate for a 70 s short on this Mac: **~1–4 h** (unmeasured). Measure in Stage C.
+Render speed on this Mac: first doctor run (2026-11-02) rendered 1 preview frame (540×960) in **6.8 s including one-time shader compilation**, with Blender process peak memory **391 MB**. Its 19 h estimate used a bad scaling guess and is void. Real steady-state numbers come from `python -m studio.benchmark`.
 
 ## Key learnings (from research)
 - The premise, hook and escalation drive results far more than render quality. Topics get cloned within ~48 h, so speed on our own ideas matters.
@@ -49,7 +49,7 @@ Render-time estimate for a 70 s short on this Mac: **~1–4 h** (unmeasured). Me
 | 2026-11-02 | `studio/render_shot.py` (render → MP4 → contact sheet), `studio/doctor.py --quick`, `setup/mac_setup.sh` syntax | Pass in the container. Setup script not yet run on a Mac |
 
 ## Outstanding issues / open questions
-- First Mac run: setup + doctor speed test + peak memory on 8 GB (the container peaked at ~4.3 GB; if the Mac swaps heavily, reduce crowd size or split renders).
+- Mac benchmark pending: steady s/frame at final and 720p, throttling over a run, and the owner's native vs upscaled choice. Memory is fine (391 MB process peak on the Mac; the container's ~4.9 GB was a software-GL artefact).
 - How Claude Code will run on the Mac: Claude Desktop app or `claude remote-control` in the project folder.
 - Characters have no rig yet (procedural limb pivots). Fine for the stylised look; revisit if close-up acting is needed.
 - Polish: thin dark seam along the waterline (sand/seabed join).
@@ -57,6 +57,6 @@ Render-time estimate for a 70 s short on this Mac: **~1–4 h** (unmeasured). Me
 - Research gaps: platform, vendor and Blender pages could not be opened directly from the research sandbox. Re-verify prices and policies before spending or launching.
 
 ## Next steps
-1. Owner runs `docs/MAC_SETUP.md` and sends the doctor output (speed + memory).
+1. ~~Owner runs setup + doctor~~ Done 2026-11-02: ALL GOOD (Python 3.13.9, bpy 5.2.3, ffmpeg 9.0.2). Next: owner runs `git pull` + `python -m studio.benchmark` and sends the output.
 2. Stage C on the Mac: render s01 in `final` and `final_720`; owner picks native vs upscaled; record s/frame and temperature notes here.
 3. Stage D: storyboard → shot specs for "slow sound"; Ocean Drive street kit (cars, cafés); effects (sound rings, shock cones); HUD counter + captions overlay; Kokoro narration + SFX; multi-shot assembly; QC checks; first complete 61–80 s video for approval.

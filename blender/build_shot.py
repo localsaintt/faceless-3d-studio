@@ -47,6 +47,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--still", type=int, nargs="*", help="render only these frames (stills)")
     ap.add_argument("--save-blend", action="store_true")
+    ap.add_argument("--frames", type=int, help="render only the first N frames (benchmarks)")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:])
 
     t0 = time.time()
@@ -63,6 +64,8 @@ def main():
     add_walkers(spec, scene, kit, f_start, f_end)
     shot_coll = geo.new_collection("SHOT")
     camera.build(spec["camera"], scene, shot_coll, f_start, f_end)
+    if args.frames:
+        scene.frame_end = min(f_end, f_start + args.frames - 1)
 
     os.makedirs(args.out, exist_ok=True)
     render.configure(scene, args.profile, os.path.join(os.path.abspath(args.out), "frame_####"))
@@ -70,24 +73,35 @@ def main():
         bpy.ops.wm.save_as_mainfile(filepath=os.path.join(os.path.abspath(args.out), "shot.blend"))
     t_build = time.time() - t0
 
+    # Per-frame timing. The first frame includes one-time shader compilation, so the
+    # steady-state speed (used for estimates) excludes it.
+    times = []
+    marks = {}
+    bpy.app.handlers.render_pre.append(lambda *_: marks.__setitem__("t", time.time()))
+    bpy.app.handlers.render_post.append(lambda *_: times.append(time.time() - marks["t"]))
+
     t1 = time.time()
-    frames = 0
     if args.still:
         for f in args.still:
             scene.frame_set(f)
             scene.render.filepath = os.path.join(os.path.abspath(args.out), f"still_{f:04d}.png")
             bpy.ops.render.render(write_still=True)
-            frames += 1
     else:
         bpy.ops.render.render(animation=True)
-        frames = len(range(f_start, f_end + 1, scene.frame_step))
     t_render = time.time() - t1
+    frames = len(times)
+    steady = times[1:] or times
 
     report = {
         "spec": args.spec, "profile": args.profile, "frames": frames,
         "resolution": list(render.PROFILES[args.profile]["res"]),
         "build_s": round(t_build, 1), "render_s": round(t_render, 1),
-        "s_per_frame": round(t_render / max(frames, 1), 2), "peak_mem_mb": peak_mb(),
+        "s_per_frame": round(t_render / max(frames, 1), 2),
+        "first_frame_s": round(times[0], 2) if times else None,
+        "steady_s_per_frame": round(sum(steady) / len(steady), 2) if steady else None,
+        "slowest_frame_s": round(max(times), 2) if times else None,
+        "last5_s_per_frame": round(sum(times[-5:]) / len(times[-5:]), 2) if times else None,
+        "peak_mem_mb": peak_mb(),
         "objects": len(bpy.data.objects), "blender": bpy.app.version_string,
         "machine": f"{platform.system()} {platform.machine()}",
     }
