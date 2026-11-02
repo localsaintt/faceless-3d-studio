@@ -7,6 +7,8 @@ updated: 2026-11-02
 Claude reads this before writing or building any video and adds to it after every video. Newest first within each section.
 
 ## Framing and camera
+- **A 9:16 frame is only ~±21° wide:** keep every story element near the centre of the camera's aim, and make anything a caption names big enough to read at 540 px.
+- **First person + your own hands** is the strongest single image in the what-if niche (Morrow kit rules).
 - **Nothing random may sit between the lens and the subject.** The builder hides extras, palms and umbrellas within 7 m of the camera path (`clear_camera_path`). Scripted actors are never hidden. (Video 1: a pedestrian blocked s04/s07; a palm blocked s05.)
 - **Only small props may be auto-hidden.** A bug that measured object sizes before Blender evaluated them hid the whole beach floor and the road, so the sky showed through as a pale-blue "ground". Always `view_layer.update()` before reading `dimensions`. (Video 1: s02, s11, s12.)
 - **Two characters far apart need an elevated, side-on camera.** Over-the-shoulder from 5 m made the foreground person a blur that hid the other one. (Video 1, s03.)
@@ -24,6 +26,8 @@ Claude reads this before writing or building any video and adds to it after ever
 - High, diorama-style cameras (8–15 m up) are the house look; ground-level shots need a clear reason.
 
 ## Sound
+- **Never use two-pass loudnorm:** it can fall back to dynamic mode and flatten the calm → silence → boom shape. Use one linear gain + soft saturation + a limiter (Morrow kit lesson). Video 1 used two-pass, so change it.
+- No music; real-sounding place beds; a hard drop to near-silence at the moment, a soft steady ping under the slow part, a riser into the return. Duck beds under every spot sound.
 - Check every mix visually (waveform + spectrogram), since Claude can't listen. Sweeps and engines came out too loud at first.
 - Loudness: loudnorm alone overshot true peak (+1.8 dBTP). A limiter after loudnorm is required.
 - Muffling the world during the "impossible" window (low-pass + quieter beds) sells the premise.
