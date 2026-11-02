@@ -24,6 +24,12 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 - **Licence gate:** a one-time login per computer with the Skool email + a member code (lesson 1.6). The member code is a credential: never store it in this repo or paste it in chats.
 - Owner impact: ~29 GB free means installing the kit (~15 GB) would drop below our 15 GB render guard. Free space first, and install it in its own folder (not inside this project).
 
+## "What If" course 2: What wins (lesson 2.1, their first-week TikTok data, Oct 3–9 2026)
+- Top performers: absolute zero 1.1M, friction 971K, carbon 845K, all "an everyday thing changes" premises.
+- **Their pattern:** (1) an everyday thing changes for **5 seconds**; (2) a famous, busy place **by the water, in daylight**; (3) **a new picture every 2–3 s**; (4) **61 s or more**; (5) the same closing line every time ("And yes. There's a tsunami.", **their signature: never copy it**).
+- Our first video vs the pattern: (2) and (4) match; (1) is 10 s rather than 5; **(3) is the gap: ~6 s per shot**; (5) we have our own running gag (the ice-cream truck).
+- Remaining lessons in this course: 2.2 Pick a premise that can win · 2.3 The tsunami ending · 2.4 Be original (or don't get paid).
+
 ## Costs (lesson 2.2) vs. ours
 | | Morrow | Us |
 |---|---|---|

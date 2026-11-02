@@ -29,6 +29,9 @@ Claude reads this before writing or building any video and adds to it after ever
 - Muffling the world during the "impossible" window (low-pass + quieter beds) sells the premise.
 
 ## Story and script
+- **Cut to a new picture every 2–3 s** (Morrow's first-week data: all winners did). Split long shots into extra camera angles on the same set; render time doesn't change. Video 1 averaged ~6 s per shot, too slow.
+- **Signature closing line, every episode, our own:** a recurring ice-cream-truck line (never anyone else's catchphrase, e.g. Morrow's "And yes. There's a tsunami.").
+- Strongest premises so far (Morrow data): an everyday thing changes for ~5 s, at a famous busy waterfront in daylight, 61 s+.
 - Narration at ~2.6–3.6 words/s fits 4.5–8 s shots; budget ~12 words per 5 s shot.
 - Every shot needs one new beat (counter change, effect, gag) every 2–3 s; counters carry the story when narration pauses.
 - Physics claims get a science check in the note, and estimates on screen get "est.".
