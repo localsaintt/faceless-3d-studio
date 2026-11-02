@@ -2,16 +2,24 @@
 
 An AI-assisted, local 3D animation studio that turns one idea into an original, finished 1080×1920 vertical video: concept → script → storyboard → Blender scenes → render → audio and captions → assembly → quality check → owner approval.
 
-**Status:** Phase A (research) complete; awaiting approval to start Stage B (technical foundation).
+**Status:** Stage B (foundation) built and tested in the cloud; waiting for the first run on the owner's Mac. Stage C prototype (beach kit in the house style) renders.
 
+## Quick start (Mac)
+See **[docs/MAC_SETUP.md](docs/MAC_SETUP.md)**. In short:
+```bash
+bash setup/mac_setup.sh                       # installs tools in the project folder + doctor check
+.venv/bin/python -m studio.render_shot shots/proto/s01_beach_establishing.yaml --profile preview
+```
+
+## Layout
 | Where | What |
 |---|---|
-| `research/RESEARCH_REPORT.md` | Full research report and recommendations (also `research/research_report.html`) |
-| `research/creators.md` | Creator and channel analysis with sources |
-| `research/technical_blender_pipeline.md` | Blender, Python automation, rendering, post-production, hardware |
-| `research/ai_tools.md` | AI tools: status, pricing, licences |
-| `research/platform_policies.md` | TikTok / YouTube / Meta originality and monetisation policies |
+| `blender/build_shot.py`, `blender/scenekit/` | Scene builder: house style, characters, beach kit, camera moves, render profiles |
+| `studio/` | Runner (render → MP4 → contact sheet) and doctor check |
+| `shots/` | Shot specs (YAML), the contract between storyboard and Blender |
+| `setup/mac_setup.sh` | One-time Mac setup |
 | `docs/PROJECT_KNOWLEDGE.md` | Running log: decisions, what's tested, open issues, next steps |
+| `research/` | Phase A research report and source notes |
 | `CLAUDE.md` | Working rules for Claude Code sessions |
 
-Planned stack: Blender 5.2 LTS (EEVEE, headless Python), FFmpeg, Kokoro TTS, WhisperX, CC0 asset libraries. It runs on the owner's Mac.
+Stack: Blender 5.2.3 LTS as a Python module (EEVEE), FFmpeg, PyYAML; later Kokoro TTS and WhisperX. Everything is free and runs locally.
