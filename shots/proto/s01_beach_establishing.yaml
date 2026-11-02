@@ -1,0 +1,26 @@
+# Stage C prototype: opening establishing shot of the beach kit in the house style.
+# Elevated "diorama" view from just offshore: crowd faces camera, pastel hotels and palms behind,
+# slow push toward the lifeguard tower.
+id: s01
+duration: 6.0          # seconds (24 fps)
+set:
+  kit: beach
+  seed: 4412
+  crowd: 160
+  palms: 14
+  umbrellas: 16
+  buildings: 9
+  tower: {loc: [4, -4, 0], rot_deg: 200}
+  sun: {strength: 3.4, elevation_tilt: 40, azimuth: 150}
+walkers:
+  - {from: [-12, -1], to: [-6.5, -0.5]}
+  - {from: [-2, -14], to: [-6, -10]}
+camera:
+  move: dolly_push
+  from: [-16, 16, 10]
+  to: [-11, 11.5, 8]
+  target_from: [1, -8, 1.0]
+  target_to: [3, -6, 1.4]
+  lens: 30
+  fstop: 0.04       # exaggerated on purpose: tilt-shift "miniature" look
+  shake: 0.015
