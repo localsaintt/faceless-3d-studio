@@ -6,6 +6,7 @@ This vault is the studio's control room. Claude writes and updates these notes, 
 - **[[Dashboard.base|Dashboard]]**: every video and idea with its status.
 - **videos/**: one folder per video. The note inside has the script, storyboard, latest render, quality check and **your approval**.
 - **ideas/**: the idea bank. Add your own with the *Idea* template (Command palette → "Templates: Insert template").
+- **Studio Memory/**: what the studio has learned (lessons, shot recipes, your preferences, performance). Claude reads it before every new video, which is how each video gets faster and better. Add anything you want remembered.
 - **docs/PROJECT_KNOWLEDGE.md**: what's been decided, tested and learned.
 - **research/**: the Phase A research report.
 

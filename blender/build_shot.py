@@ -109,10 +109,15 @@ def clear_camera_path(kit, cam_spec, actor_objs, radius=7.0):
         return 0
     keep = set(actor_objs)
     hidden = 0
+    bpy.context.view_layer.update()  # dimensions are zero until the depsgraph has evaluated new objects
     for o in kit["root"].objects:
-        if o in keep or o.type == "LIGHT":
+        if o in keep or o.type in ("LIGHT", "CAMERA"):
             continue
-        if o.dimensions.length > 30:  # ground, sea, buildings: never hide
+        # only small props and extras may be hidden: collection instances (people, palms, umbrellas)
+        # and meshes under 6 m. Ground, sea, buildings and the tower are never hidden.
+        if o.type == "MESH" and (o.dimensions.length > 6 or o.parent is not None):
+            continue
+        if o.type == "EMPTY" and o.instance_type != "COLLECTION":
             continue
         for p in pts:
             if (o.location.x - p[0]) ** 2 + (o.location.y - p[1]) ** 2 < radius ** 2:

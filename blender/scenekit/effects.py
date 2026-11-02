@@ -138,7 +138,7 @@ def ring_field(coll, name, at, count, area, speed, max_r, spread, seed, collapse
     rng = random.Random(seed)
     return [ring(coll, f"{name}_{i}", at + rng.uniform(0, spread),
                  (rng.uniform(*area[0]), rng.uniform(*area[1]), z), speed,
-                 max_r * rng.uniform(0.6, 1.0), collapse_at, floor=0.4) for i in range(count)]
+                 max_r * rng.uniform(0.6, 1.0), collapse_at, floor=0.28) for i in range(count)]
 
 
 # ---------------------------------------------------------------- mach cone

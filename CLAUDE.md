@@ -3,6 +3,7 @@
 An automated studio that turns one idea into an original, finished vertical 3D animated video (Blender + Python + FFmpeg), always delivered for the owner's approval.
 
 ## Read first, every session
+- **`Studio Memory/`** (Obsidian): `Lessons learned.md`, `Shot recipes.md`, `Owner preferences.md`, `Performance log.md`. **Read all four before writing or building any video. After every video, add what you learned.** Also read the owner's "Your notes" sections in `videos/*/` notes.
 - `docs/PROJECT_KNOWLEDGE.md`: status, decisions, hardware limits, open questions. **Update it before ending a session.**
 - `research/RESEARCH_REPORT.md`: research, recommended architecture, style and roadmap.
 
@@ -13,7 +14,7 @@ An automated studio that turns one idea into an original, finished vertical 3D a
 - Test everything before claiming it works. A script or storyboard is not a video.
 
 ## Machine constraints (owner's Mac)
-- Apple M2, **8 GB unified memory**, macOS Tahoe 26.6.2, ~100 GB free.
+- MacBook Air (fanless), Apple M2, **8 GB unified memory**, macOS Tahoe 26.6.2, **~29 GB free**. Measured: ~1.15 s per final 1080×1920 frame (~32 min per 70 s video), ~0.5 GB render memory.
 - EEVEE only (no Cycles for production). 1K textures, instanced crowds, render per shot, previews at 540×960 before final renders, 24 fps, per-shot render-time budget.
 - Keep the project and all render output **outside iCloud-synced folders**; render frames and outputs are git-ignored.
 

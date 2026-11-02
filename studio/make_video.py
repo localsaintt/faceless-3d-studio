@@ -135,7 +135,7 @@ def main():
     ass = (out / "overlays.ass").relative_to(ROOT)
     sh(["ffmpeg", "-y", "-loglevel", "error", "-i", str(out / "picture.mp4"), "-i", str(out / "mix.wav"),
         "-filter_complex",
-        f"[0:v]scale=1080:1920:flags=lanczos,ass={ass}:fontsdir={fonts},format=yuv420p[v];[1:a]{loudnorm_args(out / 'mix.wav')},aresample=48000[a]",
+        f"[0:v]scale=1080:1920:flags=lanczos,ass={ass}:fontsdir={fonts},format=yuv420p[v];[1:a]{loudnorm_args(out / 'mix.wav')},alimiter=limit=0.79:attack=2:release=50:level=false,aresample=48000[a]",
         "-map", "[v]", "-map", "[a]", "-t", f"{total:.3f}", "-c:v", "libx264", "-preset", "medium", "-crf", "18",
         "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(final_mp4)])
     sheet = out / f"{a.video_id}_{a.profile}_sheet.png"

@@ -25,7 +25,7 @@ ScaledBorderAndShadow: yes
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Caption,Archivo Black,76,{WHITE},{WHITE},{INK},&H64000000,0,0,0,0,100,100,0,0,1,7,2,5,60,60,0,1
 Style: Hud,Archivo Black,86,{WHITE},{WHITE},{INK},&H64000000,0,0,0,0,100,100,0,0,1,6,2,7,64,64,0,1
-Style: Small,Space Mono,30,{WHITE},{WHITE},{INK},&H64000000,1,0,0,0,100,100,1,0,1,4,1,7,64,64,0,1
+Style: Small,Space Mono,32,{WHITE},{WHITE},{INK},&H64000000,1,0,0,0,100,100,1,0,1,4,1,7,64,64,0,1
 Style: Tag,Space Mono,30,{WHITE},{WHITE},{MAGENTA},&H00000000,1,0,0,0,100,100,1,0,3,10,0,7,64,64,0,1
 Style: Callout,Space Mono,34,{WHITE},{WHITE},{MAGENTA},&H00000000,1,0,0,0,100,100,1,0,3,9,0,2,0,0,0,1
 Style: Prompt,Archivo Black,60,{WHITE},{WHITE},&H40151A1E,&H00000000,0,0,0,0,100,100,0,0,3,22,0,5,80,80,0,1
@@ -59,7 +59,7 @@ def ease_out(x):
 def counter_text(label, value, unit, note=None):
     u = f"{{\\fs40}} {unit}" if unit else ""
     n = f"{{\\fnSpace Mono\\fs26}}  {note}" if note else ""
-    return f"{{\\fnSpace Mono\\fs30\\b1}}{label}\\N{{\\fnArchivo Black\\fs86\\b0}}{value}{u}{n}"
+    return f"{{\\fnSpace Mono\\fs34\\b1}}{label}\\N{{\\fnArchivo Black\\fs92\\b0}}{value}{u}{n}"
 
 
 def hud_events(shot, start, slot_y):
