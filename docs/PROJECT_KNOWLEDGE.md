@@ -17,7 +17,7 @@ _Last updated: 2026-11-02 (after first Mac run)_
 | 2026-11-02 | **Approved ("go ahead")**: "Living Diorama" style, the architecture in report §10, and first video concept "What if sound moved slower than you can run?" | Owner |
 | 2026-11-02 | Stack: Blender 5.2.3 LTS **as the `bpy` Python module** in `.venv` (same version on Mac and cloud), EEVEE, YAML shot specs, FFmpeg; later Kokoro TTS and WhisperX; CC0 assets; no music beds | Claude |
 | 2026-11-02 | Animation is procedural via simple-expression drivers. Crowds are collection instances of character variants; per-person colours come from the instancer's object colour | Claude |
-| 2026-11-02 | **Final renders at native 1080×1920** (Mac benchmark: ~32 min per 70 s video; upscaling not needed) | Claude, from benchmark |
+| 2026-11-02 | **Final renders at native 1080×1920** (Mac benchmark: ~32 min per 70 s video). Owner A/B'd native vs 720p-upscaled and saw no noticeable difference, so `final_720` (~18 min) is the approved fast mode for busy days | Owner + Claude |
 | 2026-11-02 | Colour: "Standard" view transform (AgX looked grey). Miniature look: camera f-stop ~0.04 on purpose | Claude |
 
 ## Hardware profile (owner's machine)
