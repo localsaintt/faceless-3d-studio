@@ -17,6 +17,13 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 - 1 Start Here: 1.1 Welcome · 1.2 How it works · 1.3 Pick your first style · 1.4 Set up your computer · 1.5 Video 1: every prompt and file · 1.6 Log in to the kit
 - 2 The Receipts: 2.1 Why every video gets a receipt (cost sheet PDF + spreadsheet attached) · 2.2 Cost sheet · 2.3 Which Claude plan? · 2.4 Where the usage really goes · 2.5 Log your own receipt
 
+## "What If" style course: kit install (lesson 1.2)
+- Course 1 "Install the kit": 1.0 The What If style in 2 minutes · 1.1 How this works · 1.2 Install the kit · 1.3 Your first render · Downloads (the kit, the playbook, the prompts).
+- **The kit is a folder opened in Claude Code** ("Set up the kit"). It installs itself, runs a check list with ticks/crosses and fixes printed under each, and renders one real frame. This is the same pattern as our `setup/mac_setup.sh` + `studio.doctor`.
+- Requirements: Mac/Windows/Linux running Claude Code, Claude subscription, **8 GB RAM minimum (16 GB "comfier")**, **~15 GB free disk**.
+- **Licence gate:** a one-time login per computer with the Skool email + a member code (lesson 1.6). The member code is a credential: never store it in this repo or paste it in chats.
+- Owner impact: ~29 GB free means installing the kit (~15 GB) would drop below our 15 GB render guard. Free space first, and install it in its own folder (not inside this project).
+
 ## Costs (lesson 2.2) vs. ours
 | | Morrow | Us |
 |---|---|---|
@@ -35,5 +42,5 @@ They label numbers "measured" (own ledgers) vs "rate card" (provider list price)
 3. New formats to research later: motion-control reels, animal story reels (Facebook). Both depend on paid AI image/video tools.
 
 ## Open questions
-- What exactly is "the kit" (Claude Code plugin? hosted tool? project template?) and what does it require? (lessons 1.5, 1.6)
+- ~~What is the kit?~~ A Claude Code project folder with a licence login (see above). Still unknown: its renderer, scene code and prompts. Next step: read the Downloads files (read-only, never run here).
 - Which renderer do they use for 3D (Blender EEVEE vs Three.js/WebGL)?
