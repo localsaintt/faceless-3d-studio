@@ -30,6 +30,18 @@ Our own summary of what the owner shares from the Morrow Studio classroom. Their
 - Our first video vs the pattern: (2) and (4) match; (1) is 10 s rather than 5; **(3) is the gap: ~6 s per shot**; (5) we have our own running gag (the ice-cream truck).
 - Remaining lessons in this course: 2.2 Pick a premise that can win · 2.3 The tsunami ending · 2.4 Be original (or don't get paid).
 
+## "What If" course 3: Make your own (lesson 3.1)
+- Course: 3.1 Check the premise first · 3.2 Start from an example, facts first · 3.3 Build, preview, fix · 3.4 Words and sound · 3.5 Render, post, fix · 3.6 Review and deliver. The worked example is "What if oxygen disappeared for 5 seconds?", built by a fresh Claude Code given only the kit.
+- **Competitor scan before building:** who posted the premise, when, and growth speed ("demand vs supply"). If a big account posted it in the last 30 days you're late: change the element, place or ending, or post fast with your own angle.
+- Our scan for "sound slower than you can run" (2026-11-02, web search): no direct match. Nearest is an older What If video (light and sound switched). Web search indexes TikTok poorly, so the owner should double-check in the TikTok app.
+
+## "What If" course 4: Post and grow (lesson 4.1)
+- Pre-post: 61 s+; **the question readable in the first second**; sources.txt ready for comments; watch once with sound and once muted.
+- Caption formula: question + 1 emoji / one line placing the viewer / tease of the ending / a question for comments / 8–10 hashtags (their prompt 8 writes it).
+- Comment trick: answer a comment's video request with a video reply.
+- After posting: one video per account per day; reply to first comments; pin sources; read the top comment for the next premise.
+- 4.2 The daily loop: not yet seen.
+
 ## Costs (lesson 2.2) vs. ours
 | | Morrow | Us |
 |---|---|---|
