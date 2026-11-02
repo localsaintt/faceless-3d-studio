@@ -1,5 +1,8 @@
 """Render profiles tuned for an Apple M2 / 8 GB (approved "option 1" efficiency plan)."""
 PROFILES = {
+    # cloud-container smoke tests only (software GL): tiny frames, every 4th frame
+    "draft": {"res": (270, 480), "samples": 4, "frame_step": 4, "shadow_rays": 1, "shadow_steps": 2,
+              "raytracing": False},
     # quick look: quarter-area frames, every other frame
     "preview": {"res": (540, 960), "samples": 8, "frame_step": 2, "shadow_rays": 1, "shadow_steps": 4,
                 "raytracing": False},

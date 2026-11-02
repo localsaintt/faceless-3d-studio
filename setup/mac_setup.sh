@@ -29,10 +29,17 @@ echo "==> Installing ffmpeg and uv with Homebrew"
 brew install ffmpeg uv
 
 echo "==> Creating Python 3.13 environment in .venv"
-uv venv --python 3.13 .venv
+[ -x .venv/bin/python ] || uv venv --python 3.13 .venv
 
-echo "==> Installing Blender 5.2.3 (bpy, ~250 MB download) and PyYAML"
+echo "==> Installing Blender 5.2.3 (bpy, ~250 MB download), narration engine and audio tools"
 uv pip install --python .venv/bin/python -r requirements.txt
+
+echo "==> Downloading the narration voice model (Kokoro-82M, Apache-2.0, ~350 MB, one time)"
+mkdir -p models/kokoro
+for f in kokoro-v1.0.onnx voices-v1.0.bin; do
+  [ -s "models/kokoro/$f" ] || curl -fL --progress-bar -o "models/kokoro/$f" \
+    "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/$f"
+done
 
 echo "==> Running the doctor check and a speed test"
 .venv/bin/python -m studio.doctor

@@ -21,3 +21,11 @@ models/
 
 # Doctor/run logs (results are summarised in docs/PROJECT_KNOWLEDGE.md)
 logs/*.json
+
+# Obsidian: keep shared settings, ignore per-device state
+.obsidian/workspace*.json
+.obsidian/cache
+# Rendered media embedded in notes (large; finished videos are archived to iCloud)
+videos/*/media/
+# Narration cache
+output/cache/

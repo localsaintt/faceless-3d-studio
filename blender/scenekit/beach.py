@@ -27,11 +27,14 @@ def build(spec, scene):
     palms = _palm_library(lib)
     _hotels(root, rng, spec.get("buildings", 9))
     _scatter_palms(root, palms, rng, spec.get("palms", 14))
-    blocked = _umbrellas(root, lib, rng, spec.get("umbrellas", 16))
+    blocked, umbrellas = _umbrellas(root, lib, rng, spec.get("umbrellas", 16), spec.get("clear", []))
     tower = _lifeguard_tower(root, spec.get("tower", {"loc": [6, -6, 0]}))
+    tx, ty = spec.get("tower", {"loc": [6, -6, 0]})["loc"][:2]
+    blocked = blocked + [(tx, ty, 2.6)] + [tuple(c) for c in spec.get("clear", [])]
     variants = characters.build_library(lib, seed=spec.get("seed", 1))
     crowd = _crowd(root, variants, rng, spec.get("crowd", 150), blocked)
-    return {"root": root, "lib": lib, "variants": variants, "tower": tower, "crowd": crowd, "rng": rng}
+    return {"root": root, "lib": lib, "variants": variants, "tower": tower, "crowd": crowd, "rng": rng,
+            "umbrellas": umbrellas}
 
 
 # ---------------------------------------------------------------- environment
@@ -217,21 +220,25 @@ def _hotels(coll, rng, n):
         x += w + rng.uniform(1.5, 4)
 
 
-def _umbrellas(coll, lib, rng, n):
+def _umbrellas(coll, lib, rng, n, clear=()):
     canopy = style.random_palette("umbrella", style.UMBRELLA, 0.6)
     towel = style.random_palette("towel", style.UMBRELLA + style.PASTEL, 0.9)
     pole = style.solid("pole", P["white"], 0.5)
     ucoll = geo.new_collection("umbrella_src", parent=lib)
     geo.obj("u_canopy", geo.cone(10), ucoll, (0, 0, 2.15), (1.25, 1.25, 0.45), mat=canopy)
     geo.obj("u_pole", geo.cylinder(6), ucoll, (0, 0, 1.0), (0.04, 0.04, 2.1), mat=pole)
-    blocked = []
-    for i in range(n):
+    blocked, out = [], []
+    while len(out) < n:
         x, y = rng.uniform(-45, 45), rng.uniform(-24, -6)
-        geo.instance(f"umbrella{i}", coll, ucoll, (x, y, 0), rng.uniform(0, geo.TAU), rng.uniform(0.9, 1.1))
+        if any((x - cx) ** 2 + (y - cy) ** 2 < (cr + 2) ** 2 for cx, cy, cr in clear):
+            continue
+        out.append(geo.instance(f"umbrella{len(out)}", coll, ucoll, (x, y, 0), rng.uniform(0, geo.TAU),
+                                rng.uniform(0.9, 1.1)))
+        i = len(out) - 1
         geo.obj(f"towel{i}", geo.cube(), coll, (x + rng.uniform(-1.4, 1.4), y + 1.6, 0.02), (1.0, 1.9, 0.02),
                 (0, 0, rng.uniform(-0.4, 0.4)), mat=towel)
         blocked.append((x, y, 1.8))
-    return blocked
+    return blocked, out
 
 
 def _lifeguard_tower(coll, cfg):
