@@ -57,6 +57,33 @@ updated: '2026-11-02'
 
 Speed of sound in air is ~767 mph (343 m/s). At 7 mph (3.13 m/s), a 60 ft (18.3 m) gap takes ~5.8 s. An object faster than the local speed of sound drags a Mach cone (sin θ = 1/M) and a sonic boom sweeps over observers as the cone passes. The premise itself is impossible and is presented as a hypothetical, not real science.
 
+## Latest render
+
+![[media/slow-sound-miami_draft.mp4]]
+
+![[media/slow-sound-miami_draft_sheet.png]]
+
+## Quality check
+
+**Verdict: PASS** · length 70.0 s
+
+| Check | Result | Detail |
+|---|---|---|
+| resolution | PASS | 1080x1920 |
+| frame rate | PASS | 24.00 fps |
+| codecs | PASS | h264 / aac |
+| length >= 61 s | PASS | 70.00 s (TikTok Creator Rewards needs > 1 min) |
+| no black frames | PASS | none |
+| no frozen video | PASS | none |
+| loudness -14 LUFS | PASS | -14.3 LUFS integrated |
+| true peak <= -1 dBTP | PASS | -1.4 dBTP |
+| no long silences | PASS | none |
+| narration fits shots | PASS | all lines fit |
+| originality vs own videos | PASS | no overlap with other videos |
+
+_Profile: draft · overlay events: 650 · built in 47.7 min_
+
+
 <!-- STUDIO:END -->
 
 ## Your notes
