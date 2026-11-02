@@ -17,6 +17,7 @@ _Last updated: 2026-11-02 (after first Mac run)_
 | 2026-11-02 | **Approved ("go ahead")**: "Living Diorama" style, the architecture in report §10, and first video concept "What if sound moved slower than you can run?" | Owner |
 | 2026-11-02 | Stack: Blender 5.2.3 LTS **as the `bpy` Python module** in `.venv` (same version on Mac and cloud), EEVEE, YAML shot specs, FFmpeg; later Kokoro TTS and WhisperX; CC0 assets; no music beds | Claude |
 | 2026-11-02 | Animation is procedural via simple-expression drivers. Crowds are collection instances of character variants; per-person colours come from the instancer's object colour | Claude |
+| 2026-11-02 | **Final renders at native 1080×1920** (Mac benchmark: ~32 min per 70 s video; upscaling not needed) | Claude, from benchmark |
 | 2026-11-02 | Colour: "Standard" view transform (AgX looked grey). Miniature look: camera f-stop ~0.04 on purpose | Claude |
 
 ## Hardware profile (owner's machine)
@@ -30,6 +31,14 @@ _Last updated: 2026-11-02 (after first Mac run)_
 | Thermal | macOS throttles when hot, which costs speed but does no damage | Render overnight, hard surface/stand, plugged in; Low Power Mode is optional for cooler overnight runs |
 
 Render speed on this Mac: first doctor run (2026-11-02) rendered 1 preview frame (540×960) in **6.8 s including one-time shader compilation**, with Blender process peak memory **391 MB**. Its 19 h estimate used a bad scaling guess and is void. Real steady-state numbers come from `python -m studio.benchmark`.
+
+**Mac benchmark (2026-11-02, 48 frames of prototype s01, cool start):**
+| Profile | Steady s/frame | First frame | Last five | Peak memory | 70 s video (1,680 frames) |
+|---|---|---|---|---|---|
+| final 1080×1920, 24 samples | **1.15 s** | 1.46 s | 1.17 s (no slowdown in ~1 min) | 516 MB | **~32 min** |
+| final_720 (upscaled) | 0.64 s | 0.73 s | 0.64 s | 513 MB | ~18 min |
+
+Conclusions: the M2 renders this style ~40× faster than the cloud container's software GL. Memory is a non-issue (~0.5 GB). **Default to native 1080×1920**; upscaling isn't needed. There is headroom for more samples, ray-traced reflections or bigger crowds. Throttling over a full 30+ min render is still unmeasured, so watch `last5_s_per_frame` in render reports.
 
 ## Key learnings (from research)
 - The premise, hook and escalation drive results far more than render quality. Topics get cloned within ~48 h, so speed on our own ideas matters.
@@ -49,7 +58,7 @@ Render speed on this Mac: first doctor run (2026-11-02) rendered 1 preview frame
 | 2026-11-02 | `studio/render_shot.py` (render → MP4 → contact sheet), `studio/doctor.py --quick`, `setup/mac_setup.sh` syntax | Pass in the container. Setup script not yet run on a Mac |
 
 ## Outstanding issues / open questions
-- Mac benchmark pending: steady s/frame at final and 720p, throttling over a run, and the owner's native vs upscaled choice. Memory is fine (391 MB process peak on the Mac; the container's ~4.9 GB was a software-GL artefact).
+- Mac benchmark done (1.15 s/frame final). Still unmeasured: throttling on a full-length render (fanless MacBook Air). Memory is fine (391 MB process peak on the Mac; the container's ~4.9 GB was a software-GL artefact).
 - How Claude Code will run on the Mac: Claude Desktop app or `claude remote-control` in the project folder.
 - Characters have no rig yet (procedural limb pivots). Fine for the stylised look; revisit if close-up acting is needed.
 - Polish: thin dark seam along the waterline (sand/seabed join).
@@ -57,6 +66,6 @@ Render speed on this Mac: first doctor run (2026-11-02) rendered 1 preview frame
 - Research gaps: platform, vendor and Blender pages could not be opened directly from the research sandbox. Re-verify prices and policies before spending or launching.
 
 ## Next steps
-1. ~~Owner runs setup + doctor~~ Done 2026-11-02: ALL GOOD (Python 3.13.9, bpy 5.2.3, ffmpeg 9.0.2). Next: owner runs `git pull` + `python -m studio.benchmark` and sends the output.
+1. ~~Owner runs setup + doctor~~ Done 2026-11-02: ALL GOOD (Python 3.13.9, bpy 5.2.3, ffmpeg 9.0.2). Benchmark done the same day: 1.15 s/frame at final quality (~32 min per 70 s video).
 2. Stage C on the Mac: render s01 in `final` and `final_720`; owner picks native vs upscaled; record s/frame and temperature notes here.
 3. Stage D: storyboard → shot specs for "slow sound"; Ocean Drive street kit (cars, cafés); effects (sound rings, shock cones); HUD counter + captions overlay; Kokoro narration + SFX; multi-shot assembly; QC checks; first complete 61–80 s video for approval.
