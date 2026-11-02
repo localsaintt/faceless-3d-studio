@@ -19,9 +19,11 @@ ROOT = Path(__file__).resolve().parent.parent
 FPS = 24
 
 
-def run_blender(spec, profile, out, stills=None, save_blend=False):
+def run_blender(spec, profile, out, stills=None, save_blend=False, frames=None):
     cmd = [sys.executable, str(ROOT / "blender" / "build_shot.py"),
            "--spec", str(spec), "--profile", profile, "--out", str(out)]
+    if frames:
+        cmd += ["--frames", str(frames)]
     if stills:
         cmd += ["--still", *map(str, stills)]
     if save_blend:
@@ -73,6 +75,8 @@ def main():
     ap.add_argument("--still", type=int, nargs="*")
     ap.add_argument("--fresh", action="store_true", help="delete previous frames for this shot/profile first")
     ap.add_argument("--save-blend", action="store_true")
+    ap.add_argument("--keep-frames", action="store_true",
+                    help="keep the PNG frames of final renders (deleted by default to save disk space)")
     a = ap.parse_args()
 
     spec = Path(a.spec).resolve()
@@ -90,7 +94,9 @@ def main():
         assemble(out, mp4, p["frame_step"], (1080, 1920) if a.profile == "final_720" else None)
         contact_sheet(mp4, out.parent / f"{spec.stem}_{a.profile}_sheet.png")
         report["video"] = str(mp4.relative_to(ROOT))
-    (out / "render_report.json").write_text(json.dumps(report, indent=2))
+    (out.parent / f"{spec.stem}_{a.profile}_report.json").write_text(json.dumps(report, indent=2))
+    if not a.still and a.profile != "preview" and not a.keep_frames:
+        shutil.rmtree(out)  # the MP4 is assembled; frames are several GB per video
     print(json.dumps(report, indent=2))
 
 
